@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}
+    Products
+{% endblock %}
+
+{% block content %}
+    <br><br><br>
+    <div class="row">
+        <div class="offset-2 col-3">
+            <form class="col" name="c_form" action="" method="get">
+                {% csrf_token %}
+                {{ category_form.as_p }}
+            </form>
+        </div>
+        <div class="offset-2 col-3">
+            <form class="col" action="" method="get">
+                {% csrf_token %}
+                {{ search_form.as_p }}
+            </form>
+        </div>
+    </div>
+    <br><br>
+    <div class="offset-1 row ">
+        <a href="{% url 'product:order_filter' 'Newest' %}" class="text-dark col-1"> Newest</a>
+        <a href="{% url 'product:order_filter' 'Oldest' %}" class="text-dark col-1"> Oldest</a>
+        <a href="{% url 'product:order_filter' 'Expensive' %}" class="text-dark col-1"> Expensive</a>
+        <a href="{% url 'product:order_filter' 'Cheapest' %}" class="text-dark col-1"> Cheapest</a>
+    </div>
+
+    <br><br>
+    <div class="offset-1 row">
+        {% for product in products %}
+            <div class="col-2 mx-2 my-4 ">
+                <div class="card border border-2 border-secondary px-1">
+                    <img src="{{ product.image.url }}" class="card-img " style="height: 200px" alt="">
+                    <p class="card-title mx-1 mt-1 " style="font-family: SansSerif,cursive">{{ product.name }}</p>
+                    <p class="card-title mx-1">{{ product.price }} $</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
