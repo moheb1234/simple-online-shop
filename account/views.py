@@ -1,6 +1,7 @@
 from urllib.request import Request
 
 from django.contrib.auth import login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib import messages
@@ -46,7 +47,7 @@ class UserLogin(View):
         return render(request, self.template_name, {'form': form})
 
 
-class UserLogout(View):
+class UserLogout(LoginRequiredMixin, View):
     def get(self, request):
         if request.user.is_authenticated:
             logout(request)

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}>
+{% block title %}
+    Favorites
+{% endblock %}
+
+{% block content %}
+    {% include 'inc/messages.html' %}
+    <div class="offset-3 col-6">
+        {% if not favorites|length %}
+            <br>
+            <h3 class="text-center"> there is no product in your favorites </h3>
+            <br>
+        {% endif %}
+        {% for favorite in favorites %}
+            <div class="card my-3 p-2">
+                <p class="card-title h5">Product Name: {{ favorite.product.name }}</p>
+                <form action="{% url 'favorite:remove' favorite.product.pk %}" method="post">
+                    {% csrf_token %}
+                    <input class="btn btn-danger " value="Remove" type="submit">
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

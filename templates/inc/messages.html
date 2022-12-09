@@ -1,8 +1,9 @@
 {% if messages %}
     <br>
-    <ul class="messages offset-4 col-4">
+    <ul class="messages offset-3 col-6">
         {% for message in messages %}
-            <li{% if message.tags %} class=" alert alert-{{ message.tags }} text-center"{% endif %}>{{ message }}</li>
+            <li{% if message.tags %} class="h5 alert alert-{{ message.tags }} text-center"{% endif %}
+                                     style="list-style-type: none">{{ message }}</li>
         {% endfor %}
     </ul>
 {% endif %}

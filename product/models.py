@@ -20,15 +20,3 @@ class Product(models.Model):
     class Meta:
         ordering = ('name',)
 
-    @staticmethod
-    def order_by(name):
-        products = Product.objects.all()
-        if name == 'Newest':
-            products = products.order_by('created_date__date')
-        elif name == 'Oldest':
-            products = products.order_by('-created_date')
-        elif name == 'Expensive':
-            products = products.order_by('-price')
-        elif name == 'Cheapest':
-            products = products.order_by('price')
-        return products

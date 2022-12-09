@@ -27,6 +27,26 @@ class UserRegisterForm(forms.Form):
             raise ValidationError('password length must be at least 8 character')
         if not re.search('\\d', data):
             raise ValidationError('password must contains at least one digits')
+        if re.search('\\s', data):
+            raise ValidationError('password must not contains any space')
+        if re.search('[a-zA-z]', data):
+            raise ValidationError('password must contains at least one letter')
+        return data
+
+    def clean_username(self):
+        data = self.cleaned_data['username']
+        if len(data) < 3:
+            raise ValidationError('username is too short')
+        if re.search('\\s', data):
+            raise ValidationError('username must not contains any space')
+        if User.objects.filter(username=data).first():
+            raise ValidationError('this username already taken')
+        return data
+
+    def clean_email(self):
+        data = self.cleaned_data['email']
+        if User.objects.filter(email=data).first():
+            raise ValidationError('this email already taken')
         return data
 
     def save(self, clean_data: dict):

@@ -8,7 +8,7 @@ from product.models import Product
 class Products(View):
     def get(self, request, name=None):
         if name:
-            products = Product.order_by(name)
+            products = Product.objects.all().order_by(name)
         else:
             products = Product.objects.all()
         category_form = CategoryFilterForm()

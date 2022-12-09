@@ -4,6 +4,8 @@
 {% endblock %}
 
 {% block content %}
+    <br>
+    {% include 'inc/messages.html' %}
     <br><br><br>
     <div class="row">
         <div class="offset-2 col-3">
@@ -21,20 +23,34 @@
     </div>
     <br><br>
     <div class="offset-1 row ">
-        <a href="{% url 'product:order_filter' 'Newest' %}" class="text-dark col-1"> Newest</a>
-        <a href="{% url 'product:order_filter' 'Oldest' %}" class="text-dark col-1"> Oldest</a>
-        <a href="{% url 'product:order_filter' 'Expensive' %}" class="text-dark col-1"> Expensive</a>
-        <a href="{% url 'product:order_filter' 'Cheapest' %}" class="text-dark col-1"> Cheapest</a>
+        <a href="{% url 'product:order_filter' 'created_date' %}" class="text-dark col-1"> Newest</a>
+        <a href="{% url 'product:order_filter' '-created_date' %}" class="text-dark col-1"> Oldest</a>
+        <a href="{% url 'product:order_filter' '-price' %}" class="text-dark col-1"> Expensive</a>
+        <a href="{% url 'product:order_filter' 'price' %}" class="text-dark col-1"> Cheapest</a>
     </div>
 
     <br><br>
     <div class="offset-1 row">
         {% for product in products %}
-            <div class="col-2 mx-2 my-4 ">
+            <div class="col-lg-2 col-md-3 col-sm-6 mx-2 my-4 ">
                 <div class="card border border-2 border-secondary px-1">
                     <img src="{{ product.image.url }}" class="card-img " style="height: 200px" alt="">
                     <p class="card-title mx-1 mt-1 " style="font-family: SansSerif,cursive">{{ product.name }}</p>
-                    <p class="card-title mx-1">{{ product.price }} $</p>
+                    <div class="row">
+                        <p class="card-title pe-0 col-4 ">{{ product.price }} $</p>
+                        {% if not product.is_available %}
+                            <small class="text-danger card-title col-7"> not available</small>
+                        {% endif %}
+                    </div>
+                    <form action="{% url 'cart:add' product.pk %}" method="post">
+                        {% csrf_token %}
+                        <input class="btn btn-success mx-2 mt-3 pe-3 text-center col-11" value="Add To Cart"
+                               type="submit">
+                    </form>
+                    <form action="{% url 'favorite:add' product.pk %}" method="post">
+                        {% csrf_token %}
+                        <input class="btn btn-danger mx-2 my-1 col-11" value="Add To Favorite" type="submit">
+                    </form>
                 </div>
             </div>
         {% endfor %}
