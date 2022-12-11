@@ -20,7 +20,9 @@ product in database for testing</p>
 <small># delete all products</small>
 <p>python manage.py deleteproducts </p>
 <h3>6. Run server</h3>
-<small style="color: #726a6a"># migrate </small>
-<p>python manage.py migrate</p>
+<small># migrate </small>
+<h4>python manage.py migrate</h4>
+<small>#run server</small>
+<h4>python manage.py</h4>
 
 
