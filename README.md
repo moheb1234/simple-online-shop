@@ -21,8 +21,10 @@ product in database for testing</p>
 <p>python manage.py deleteproducts </p>
 <h3>6. Run server</h3>
 <small># migrate </small>
-<h4>python manage.py migrate</h4>
+<p>python manage.py migrate</p>
 <small>#run server</small>
-<h4>python manage.py</h4>
-
+<p>python manage.py runserver</p>
+<h4> open http://127.0.0.1:8000/ </h4>
+<p>now you can see the home page</p>
+<img src="https://i.imgur.com/WWvTA5F.png" alt="">
 
