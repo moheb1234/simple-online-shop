@@ -14,12 +14,15 @@ class UserRegisterForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
     confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
+    error_css_class = 'danger'
+
     def clean(self):
         cd = super().clean()
         password = cd.get('password')
         confirm_password = cd.get('confirm_password')
-        if password != confirm_password:
-            raise ValidationError('password not match')
+        if password:
+            if password != confirm_password:
+                raise ValidationError('password not match')
 
     def clean_password(self):
         data = self.cleaned_data['password']
@@ -29,7 +32,7 @@ class UserRegisterForm(forms.Form):
             raise ValidationError('password must contains at least one digits')
         if re.search('\\s', data):
             raise ValidationError('password must not contains any space')
-        if re.search('[a-zA-z]', data):
+        if not re.search('[a-zA-z]', data):
             raise ValidationError('password must contains at least one letter')
         return data
 

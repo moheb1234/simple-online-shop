@@ -11,6 +11,8 @@
             <h3 class="text-center"> there is no product in your cart </h3>
             <br>
         {% endif %}
+        <br><br>
+        <h5>total price: {{ total_price }}</h5>
         {% for cart_item in cart_items %}
             <div class="card my-3 p-2">
                 <p class="card-title h5">Product Name: {{ cart_item.product.name }}</p>

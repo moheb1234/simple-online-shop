@@ -11,7 +11,8 @@ from product.models import Product
 class CartView(LoginRequiredMixin, View):
     def get(self, request):
         cart_items = Cart.objects.filter(user=request.user)
-        return render(request, 'cart/cart.html', {'cart_items': cart_items})
+        return render(request, 'cart/cart.html',
+                      {'cart_items': cart_items, 'total_price': Cart.objects.total_price(request.user)})
 
 
 class AddView(LoginRequiredMixin, View):
