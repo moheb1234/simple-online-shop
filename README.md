@@ -14,7 +14,7 @@ https://www.python.org/downloads and install it
 pip install -r requirements.txt
 <h3>5. Load Sample Data</h3>
 <p>now you can run server, but before you can load sample 
-product in database for testing</p>
+products in database for testing</p>
 <small># load product with random price</small>
 <p>python manage.py loadprodcts </p>
 <small># delete all products</small>
