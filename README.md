@@ -1,7 +1,7 @@
 <h2>How to run </h2>
 <h3>1. Install python</h3>
-<p>if python is not install your system go to 
-<a>https://www.python.org/downloads</a> and install it</p>
+if python is not install in your system go to 
+<a>https://www.python.org/downloads</a> and install it
 <h3>2. Clone repository </h3>
 <p>git clone https://github.com/moheb1234/simple-online-shop.git</p>
 <h3>3. Setup virtual environment</h3>
