@@ -27,4 +27,5 @@ product in database for testing</p>
 <h4> open http://127.0.0.1:8000/ </h4>
 <p>now you can see the home page</p>
 <img src="https://i.imgur.com/WWvTA5F.png" alt="">
+<img src="https://i.imgur.com/AUvejNM.png" alt="">
 
