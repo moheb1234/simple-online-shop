@@ -1,6 +1,6 @@
 <h2>How to run </h2>
 <h3>1. Install python</h3>
-if python is not install in your system go to 
+if python is not install in your system go to
 https://www.python.org/downloads and install it
 <h3>2. Clone repository </h3>
 <p>git clone https://github.com/moheb1234/simple-online-shop.git</p>
@@ -19,5 +19,8 @@ product in database for testing</p>
 <p>python manage.py loadprodcts </p>
 <small># delete all products</small>
 <p>python manage.py deleteproducts </p>
+<h3>6. Run server</h3>
+<!-- a normal html comment -->
+<p>python manage.py migrate</p>
 
 
