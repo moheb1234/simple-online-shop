@@ -1,55 +1,43 @@
-from urllib.request import Request
-
+from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, redirect
-from django.views import View
-from django.contrib import messages
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.views.generic import RedirectView, FormView
 
 from account.form import UserRegisterForm, UserLoginForm
 
 
-class UserRegister(View):
-    form_class = UserRegisterForm
+class UserRegister(FormView):
     template_name = 'account/register.html'
+    form_class = UserRegisterForm
+    success_url = reverse_lazy('account:login')
 
-    def get(self, request):
-        form = self.form_class()
-        return render(request, self.template_name, {'form': form})
-
-    def post(self, request):
-        form = self.form_class(data=request.POST)
-        if form.is_valid():
-            form.save(form.cleaned_data)
-            messages.success(request, 'register was done successfully', 'success')
-            return redirect('account:login')
-        return render(request, self.template_name, {'form': form})
+    def form_valid(self, form):
+        form.save(form.cleaned_data)
+        messages.success(self.request, 'register was done successfully', 'success')
+        return super().form_valid(self)
 
 
-class UserLogin(View):
-    form_class = UserLoginForm
+class UserLogin(FormView):
     template_name = 'account/login.html'
+    form_class = UserLoginForm
+    success_url = reverse_lazy('product:products')
 
-    def get(self, request):
-        form = self.form_class()
-        return render(request, self.template_name, {'form': form})
-
-    def post(self, request):
-        form = self.form_class(data=request.POST)
-        if form.is_valid():
-            try:
-                user = form.find_user(form.cleaned_data)
-                login(request, user)
-            except ValueError as ve:
-                messages.error(request, str(ve), 'danger')
-                return redirect('account:login')
-            return redirect('product:products')
-        return render(request, self.template_name, {'form': form})
+    def form_valid(self, form):
+        try:
+            user = form.find_user(form.cleaned_data)
+            login(self.request, user)
+        except ValueError as ve:
+            messages.error(self.request, str(ve), 'danger')
+            return redirect(self.request.get_full_path())
+        return super().form_valid(self)
 
 
-class UserLogout(LoginRequiredMixin, View):
-    def get(self, request):
-        if request.user.is_authenticated:
-            logout(request)
-            return redirect('account:login')
-        return redirect('account:login')
+class UserLogoutView(LoginRequiredMixin, RedirectView):
+    pattern_name = 'account:login'
+
+    def get_redirect_url(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            logout(self.request)
+        return super().get_redirect_url(*args, **kwargs)
