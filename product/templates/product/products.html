@@ -8,27 +8,15 @@
     {% include 'inc/messages.html' %}
     <br><br><br>
     <div class="row">
-        <div class="offset-2 col-3">
-            <form class="col" name="c_form" action="" method="get">
-                {% csrf_token %}
-                {{ category_form.as_p }}
+        <div class="offset-4 col-4">
+            <form class="row" name="c_form" action="" method="get">
+                {#                {% csrf_token %}#}
+                {{ filter_form.as_p }}
             </form>
         </div>
-        <div class="offset-2 col-3">
-            <form class="col" action="" method="get">
-                {% csrf_token %}
-                {{ search_form.as_p }}
-            </form>
-        </div>
+
     </div>
     <br><br>
-    <div class="offset-1 row ">
-        <a href="{% url 'product:order_filter' 'created_date' %}" class="text-dark col-1"> Newest</a>
-        <a href="{% url 'product:order_filter' '-created_date' %}" class="text-dark col-1"> Oldest</a>
-        <a href="{% url 'product:order_filter' '-price' %}" class="text-dark col-1"> Expensive</a>
-        <a href="{% url 'product:order_filter' 'price' %}" class="text-dark col-1"> Cheapest</a>
-    </div>
-
     <br><br>
     <div class="offset-1 row">
         {% for product in products %}

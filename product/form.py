@@ -2,14 +2,25 @@ from django import forms
 
 from product.models import Category
 
+orders = (
+    ('', 'Order By'),
+    ('created_date', 'Newest'),
+    ('-created_date', 'Oldest'),
+    ('-price', 'Expensive'),
+    ('price', 'Cheapest'),
+)
 
-class CategoryFilterForm(forms.Form):
+
+class FilterForm(forms.Form):
+    name = forms.CharField(label='', required=False,
+                           widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'search'}))
+
     category = forms.ModelChoiceField(queryset=Category.objects.all()
-                                      , label='', empty_label='All Category'
+                                      , label='', empty_label='All Category', required=False
                                       , widget=forms.Select(
             attrs={'class': 'form-select', 'onchange': 'c_form.submit()'}))
 
-
-class SearchFilterForm(forms.Form):
-    name = forms.CharField(label='', required=False,
-                           widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'search'}))
+    order = forms.ChoiceField(choices=orders, required=False, label=''
+                              , widget=forms.Select(
+            attrs={'class': 'form-select', 'onchange': 'c_form.submit()'})
+                              )

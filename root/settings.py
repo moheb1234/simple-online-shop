@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'product.apps.ProductConfig',
     'cart.apps.CartConfig',
     'favorite.apps.FavoriteConfig',
+    'django_filters',
 ]
 
 MIDDLEWARE = [

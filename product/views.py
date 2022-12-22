@@ -1,27 +1,24 @@
-from django.shortcuts import render
-from django.views import View
 
-from product.form import CategoryFilterForm, SearchFilterForm
+from django.views.generic import ListView
+
+from product.filters import ProductFilter
+from product.form import  FilterForm
 from product.models import Product
 
 
-class Products(View):
-    def get(self, request, name=None):
-        if name:
-            products = Product.objects.all().order_by(name)
-        else:
-            products = Product.objects.all()
-        category_form = CategoryFilterForm()
-        search_form = SearchFilterForm()
-        if 'category' in request.GET:
-            category = request.GET['category']
-            if category != '':
-                products = products.filter(category__id=category)
-            category_form = CategoryFilterForm(initial={'category': category})
-        if 'name' in request.GET:
-            name = request.GET['name']
-            if name != '':
-                products = products.filter(name__startswith=name)
-            search_form = SearchFilterForm(initial={'name': name})
-        return render(request, 'product/products.html'
-                      , {'products': products, 'category_form': category_form, 'search_form': search_form})
+class ProductListView(ListView):
+    template_name = 'product/products.html'
+    context_object_name = 'products'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        q_param = self.request.GET
+        form_initial = {
+            'name': q_param.get('name', ''), 'category': q_param.get('category', ''), 'order': q_param.get('order', '')
+        }
+        filter_form = FilterForm(initial=form_initial)
+        context['filter_form'] = filter_form
+        return context
+
+    def get_queryset(self):
+        return ProductFilter(self.request.GET, queryset=Product.objects.all()).qs
