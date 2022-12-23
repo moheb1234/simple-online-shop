@@ -1,8 +1,9 @@
-
+from django.db.models import Count, F
 from django.views.generic import ListView
 
+from favorite.models import Favorite
 from product.filters import ProductFilter
-from product.form import  FilterForm
+from product.form import FilterForm
 from product.models import Product
 
 
@@ -14,7 +15,8 @@ class ProductListView(ListView):
         context = super().get_context_data(**kwargs)
         q_param = self.request.GET
         form_initial = {
-            'name': q_param.get('name', ''), 'category': q_param.get('category', ''), 'order': q_param.get('order', '')
+            'name': q_param.get('name', ''), 'category': q_param.get('category', '')
+            , 'order': q_param.get('order', ''), 'available': q_param.get('available', None)
         }
         filter_form = FilterForm(initial=form_initial)
         context['filter_form'] = filter_form

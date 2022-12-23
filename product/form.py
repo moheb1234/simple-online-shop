@@ -21,6 +21,8 @@ class FilterForm(forms.Form):
             attrs={'class': 'form-select', 'onchange': 'c_form.submit()'}))
 
     order = forms.ChoiceField(choices=orders, required=False, label=''
-                              , widget=forms.Select(
-            attrs={'class': 'form-select', 'onchange': 'c_form.submit()'})
-                              )
+                              , widget=forms.Select(attrs={'class': 'form-select', 'onchange': 'c_form.submit()'}))
+
+    available = forms.BooleanField(label='Just Available Products', required=False,
+                                   widget=forms.CheckboxInput(
+                                       attrs={'class': '', 'onchange': 'c_form.submit()'}))
