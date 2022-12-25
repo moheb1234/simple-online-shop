@@ -27,7 +27,7 @@ products in database for testing</p>
 <p>python manage.py runserver</p>
 <h4> open http://127.0.0.1:8000/ </h4>
 <p>now you can see the home page</p>
-<img src="blob:https://imgur.com/6b3a8943-b5bb-4a18-8aec-0159e1d5539b" alt="">
+<img src="https://imgur.com/pW2sEdD" alt="">
 <img src="blob:https://imgur.com/bc489491-0832-41f2-b626-d4b97bc2b577" alt="">
 <br><br>
 <h2>Filter Products</h2>
