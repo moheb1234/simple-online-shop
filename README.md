@@ -12,21 +12,30 @@ https://www.python.org/downloads and install it
 <p>venv\Scripts\activate</p>
 <h3>4. Install requirements</h3>
 pip install -r requirements.txt
-<h3>5. Load Sample Data</h3>
+<h3>5. Create Database</h3>
+<small>#migrate</small>
+<p>python manage.py migrate</p>
+<h3>6. Load Sample Data</h3>
 <p>now you can run server, but before you can load sample 
 products in database for testing</p>
 <small># load product with random price</small>
 <p>python manage.py loadprodcts </p>
 <small># delete all products</small>
 <p>python manage.py deleteproducts </p>
-<h3>6. Run server</h3>
-<small># migrate </small>
-<p>python manage.py migrate</p>
+<h3>7. Run server</h3>
 <small>#run server</small>
 <p>python manage.py runserver</p>
 <h4> open http://127.0.0.1:8000/ </h4>
 <p>now you can see the home page</p>
 <img src="https://i.imgur.com/WWvTA5F.png" alt="">
-<p> more items</p>
-<img src="https://i.imgur.com/AUvejNM.png" alt="">
+<br><br>
+<h2>Filter Products</h2>
+<p>you can filter the products with 3 items (name , category, availability)
+and ordering with: newest,oldest expensive , cheapest and most favorites.
+and you can also have multiple filter on products</p>
+<br><br>
+<h3>Authorizations</h3>
+<p>everyone can see products and have filter on them</p>
+<p> just authenticated user can add product to cart and favorites</p>
+
 
