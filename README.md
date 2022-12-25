@@ -27,9 +27,9 @@ products in database for testing</p>
 <p>python manage.py runserver</p>
 <h4> open http://127.0.0.1:8000/ </h4>
 <p>now you can see the home page</p>
-<img src="https://iili.io/HIk5ba9.png" alt="" height="500">
-<img src="blob:https://imgur.com/bc489491-0832-41f2-b626-d4b97bc2b577" alt="">
-<br><br>
+<img src="https://iili.io/HIkcpKQ.png" alt="">
+<hr>
+<br>
 <h2>Filter Products</h2>
 <p>you can filter the products with 3 items (name , category, availability)
 and ordering with: newest,oldest expensive , cheapest and most favorites.
