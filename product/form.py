@@ -19,11 +19,9 @@ class FilterForm(forms.Form):
     category = forms.ModelChoiceField(queryset=Category.objects.all()
                                       , label='', empty_label='All Category', required=False
                                       , widget=forms.Select(
-            attrs={'class': 'form-select', 'onchange': 'filter_form.submit()'}))
+            attrs={'class': 'form-select'}))
 
     order = forms.ChoiceField(choices=orders, required=False, label=''
-                              , widget=forms.Select(attrs={'class': 'form-select', 'onchange': 'filter_form.submit()'}))
+                              , widget=forms.Select(attrs={'class': 'form-select'}))
 
-    available = forms.BooleanField(label='Just Available Products', required=False,
-                                   widget=forms.CheckboxInput(
-                                       attrs={'class': '', 'onchange': 'filter_form.submit()'}))
+    available = forms.BooleanField(label='Just Available Products', required=False)

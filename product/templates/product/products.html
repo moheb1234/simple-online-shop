@@ -12,6 +12,7 @@
             <form class="row" name="filter_form" action="" method="get">
                 {% csrf_token %}
                 {{ filter_form.as_p }}
+                <input type="submit" value="Do Filter" class="btn btn-info col-3 mx-2">
             </form>
         </div>
 
