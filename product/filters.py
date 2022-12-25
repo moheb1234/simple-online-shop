@@ -10,11 +10,11 @@ class ProductFilter(django_filters.FilterSet):
     available = filters.CharFilter(method='check_availability')
 
     def ordering(self, queryset: QuerySet, name, value):
-        if value == 'favorites':
+        if value == 'favorites' and name:
             return queryset.annotate(num_favorites=Count('favorites')).order_by('-num_favorites')
         return queryset.order_by(value)
 
     def check_availability(self, queryset, name, value):
-        if value:
+        if value and name:
             return queryset.filter(is_available=True)
         return queryset
