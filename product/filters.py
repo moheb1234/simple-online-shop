@@ -1,6 +1,6 @@
 import django_filters
 from django.db.models import QuerySet, Count
-from django_filters import filters, OrderingFilter
+from django_filters import filters
 
 
 class ProductFilter(django_filters.FilterSet):
