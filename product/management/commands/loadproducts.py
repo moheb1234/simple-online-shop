@@ -15,6 +15,7 @@ class Command(BaseCommand):
         product_names = ['Shoe', 'Pants', 'Putin', 'Volleyball ball', 'Football ball', 'Hat', 'Resister', 'Capacitor',
                          'Trans', 'Lamp', 'Towel', 'Suitcase', 'Toy gun', 'CD game', 'Toy ball', 'Monopoly game',
                          'Samsung mobile', 'Apple mobile', 'Power bank', 'Laptop']
+        products = []
         for i in range(len(product_names)):
             all_categories = Category.objects.all()
             price = random.randint(1, 100)
@@ -27,24 +28,27 @@ class Command(BaseCommand):
                 product = Product(name=product_names[i], price=price, category=all_categories[0],
                                   is_available=is_available,
                                   image='images/' + str(i + 1) + '.jpg')
-                product.save()
+                products.append(product)
             elif 6 < i + 1 <= 10:
                 product = Product(name=product_names[i], price=price, category=all_categories[1],
                                   is_available=is_available,
                                   image='images/' + str(i + 1) + '.jpg')
-                product.save()
+                products.append(product)
             elif 10 < i + 1 <= 12:
                 product = Product(name=product_names[i], price=price, category=all_categories[2],
                                   is_available=is_available,
                                   image='images/' + str(i + 1) + '.jpg')
-                product.save()
+                products.append(product)
             elif 12 < i + 1 <= 16:
                 product = Product(name=product_names[i], price=price, category=all_categories[3],
                                   is_available=is_available,
                                   image='images/' + str(i + 1) + '.jpg')
-                product.save()
+                products.append(product)
             else:
                 product = Product(name=product_names[i], price=price, category=all_categories[4],
                                   is_available=is_available,
                                   image='images/' + str(i + 1) + '.jpg')
-                product.save()
+                products.append(product)
+
+        Product.objects.bulk_create(products)
+        self.stdout.write('sample products loaded successfully')
