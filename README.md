@@ -36,6 +36,6 @@ and you can also have multiple filter on products</p>
 <br><br>
 <h3>Authorizations</h3>
 <p>everyone can see products and have filter on them</p>
-<p> just authenticated user can add product to cart and favorites</p>
+<p> only the authenticated user can add product to cart and favorites</p>
 
 
