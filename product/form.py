@@ -8,6 +8,7 @@ orders = (
     ('-created_date', 'Oldest'),
     ('-price', 'Expensive'),
     ('price', 'Cheapest'),
+    ('favorites', 'Most Favorites'),
 )
 
 
