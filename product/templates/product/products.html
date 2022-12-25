@@ -9,7 +9,7 @@
     <br><br><br>
     <div class="row">
         <div class="offset-4 col-4">
-            <form class="row" name="c_form" action="" method="get">
+            <form class="row" name="filter_form" action="" method="get">
                 {% csrf_token %}
                 {{ filter_form.as_p }}
             </form>
