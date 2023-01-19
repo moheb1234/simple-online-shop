@@ -19,7 +19,7 @@ pip install -r requirements.txt
 <p>now you can run server, but before you can load sample 
 products in database for testing</p>
 <small># load product with random price</small>
-<p>python manage.py loadprodcts </p>
+<p>python manage.py loadproducts </p>
 <small># delete all products</small>
 <p>python manage.py deleteproducts </p>
 <h3>7. Run server</h3>
